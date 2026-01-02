@@ -78,6 +78,7 @@
                 <input type="file" name="file" id="file" 
                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('file') border-red-500 @enderror">
                 <p class="text-xs text-gray-500 mt-1">Accepts PDF, DOC, DOCX, JPG, JPEG, PNG (Max 2MB)</p>
+                <p class="text-xs text-yellow-600 mt-1"> Catatan: Kalau validasi gagal, filenya harus dipilih ulang ya. </p>
                 @error('file')<p class="text-red-500 text-xs italic">{{ $message }}</p>@enderror
             </div>
 
@@ -91,5 +92,9 @@
             </div>
         </form>
     </div>
+        <p class="text-xs text-yellow-600 mt-1">
+            Note: File must be reselected if validation fails
+        </p>
+
 </div>
 @endsection
