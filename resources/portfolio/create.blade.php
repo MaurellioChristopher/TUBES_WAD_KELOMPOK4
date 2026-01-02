@@ -19,6 +19,7 @@
             </div>
         @endif
 
+        
         @if (session('success'))
             <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4">
                 <span class="block sm:inline">{{ session('success') }}</span>
@@ -39,9 +40,10 @@
 
             <div class="mb-4">
                 <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description</label>
-                <textarea name="description" id="description" rows="5" 
+                <textarea name="description" id="description" rows="5" maxlength="500"
                           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('description') border-red-500 @enderror" 
                           required>{{ old('description') }}</textarea>
+                          <p class="text-xs text-gray-500 mt-1">Maximum 500 characters</p>
                 @error('description')<p class="text-red-500 text-xs italic">{{ $message }}</p>@enderror
             </div>
 
