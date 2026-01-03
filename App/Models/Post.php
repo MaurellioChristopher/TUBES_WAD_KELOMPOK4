@@ -38,4 +38,10 @@ class Post extends Model
         return $this->belongsToMany(Skill::class)
                     ->withTimestamps();
     }
+
+        public function scopeActive($query)
+    {
+        return $query->whereDate('deadline', '>=', now());
+    }
+
 }
