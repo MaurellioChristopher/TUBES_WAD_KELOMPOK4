@@ -82,6 +82,12 @@ class PostController extends Controller
 
         try {
             $post->delete();
+            Log::info('Post deleted', [
+                'post_id' => $post->id,
+                'deleted_by' => Auth::id(),
+                'is_admin' => Auth::check() && Auth::user()->is_admin,
+            ]);
+
 
             if (Auth::check() && Auth::user()->is_admin) {
                 return redirect()
