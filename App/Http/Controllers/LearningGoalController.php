@@ -12,84 +12,58 @@ class LearningGoalController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
-
-        $goals = $user->learningGoals()
-            ->with(['skill', 'topic'])
-            ->latest()
-            ->get();
-
+        $goals = Auth::user()->learningGoals()->with(['skill', 'topic'])->latest()->get();
         $skills = Skill::orderBy('name')->get();
         $topics = Topic::orderBy('title')->get();
-
+        
         return view('learning-goals.index', compact('goals', 'skills', 'topics'));
     }
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'title'       => 'required|string|max:255',
+        $request->validate([
+            'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'skill_id'    => 'nullable|exists:skills,id',
-            'topic_id'    => 'nullable|exists:topics,id',
+            'skill_id' => 'nullable|exists:skills,id',
+            'topic_id' => 'nullable|exists:topics,id',
             'target_date' => 'nullable|date',
-            'status'      => 'required|in:not_started,in_progress,completed',
-            'notes'       => 'nullable|string',
+            'status' => 'required|in:not_started,in_progress,completed',
         ]);
 
-        $validated['progress'] = $this->calculateProgress($validated['status']);
-
-        Auth::user()->learningGoals()->create($validated);
+        Auth::user()->learningGoals()->create($request->all());
 
         return back()->with('success', 'Learning goal created successfully!');
     }
 
     public function update(Request $request, LearningGoal $learningGoal)
     {
-        $this->authorizeGoal($learningGoal);
+        if ($learningGoal->user_id !== Auth::id()) {
+            abort(403);
+        }
 
-        $validated = $request->validate([
-            'title'       => 'required|string|max:255',
+        $request->validate([
+            'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'skill_id'    => 'nullable|exists:skills,id',
-            'topic_id'    => 'nullable|exists:topics,id',
+            'skill_id' => 'nullable|exists:skills,id',
+            'topic_id' => 'nullable|exists:topics,id',
             'target_date' => 'nullable|date',
-            'status'      => 'required|in:not_started,in_progress,completed',
-            'notes'       => 'nullable|string',
+            'status' => 'required|in:not_started,in_progress,completed',
+            'notes' => 'nullable|string',
         ]);
 
-        $validated['progress'] = $this->calculateProgress(
-            $validated['status'],
-            $learningGoal->progress
-        );
-
-        $learningGoal->update($validated);
+        $learningGoal->update($request->all());
 
         return back()->with('success', 'Learning goal updated successfully!');
     }
 
     public function destroy(LearningGoal $learningGoal)
     {
-        $this->authorizeGoal($learningGoal);
+        if ($learningGoal->user_id !== Auth::id()) {
+            abort(403);
+        }
 
         $learningGoal->delete();
 
         return back()->with('success', 'Learning goal deleted successfully!');
-    }
-
-    private function authorizeGoal(LearningGoal $learningGoal): void
-    {
-        if ($learningGoal->user_id !== Auth::id()) {
-            abort(403, 'Unauthorized action.');
-        }
-    }
-
-    private function calculateProgress(string $status, int $currentProgress = 0): int
-    {
-        return match ($status) {
-            'completed'   => 100,
-            'in_progress' => $currentProgress > 0 ? $currentProgress : 50,
-            default       => 0,
-        };
     }
 }
