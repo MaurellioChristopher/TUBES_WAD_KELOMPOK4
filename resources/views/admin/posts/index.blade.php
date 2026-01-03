@@ -73,7 +73,7 @@
                     <h3 class="text-lg font-semibold text-gray-900 mb-2">{{ $post->title }}</h3>
                     <p class="text-sm text-gray-600">
                         <i class="fas fa-user mr-1"></i>
-                        {{ $post->user->name ?? 'Unknown' }}
+                        {{ optional($post->user)->name ?? 'Unknown' }}
                     </p>
                     @if($post->user)
                         <p class="text-xs text-gray-500">
