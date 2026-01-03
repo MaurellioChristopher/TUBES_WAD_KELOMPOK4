@@ -98,7 +98,10 @@
                 <a href="{{ route('profile') }}" class="inline-block align-baseline font-bold text-sm text-gray-600 hover:text-gray-800 mr-4">
                     Cancel
                 </a>
-                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300">
+                <button type="submit"
+                        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded
+                               disabled:opacity-50 disabled:cursor-not-allowed"
+                        onclick="this.disabled=true; this.form.submit();">
                     Update Portfolio
                 </button>
             </div>
