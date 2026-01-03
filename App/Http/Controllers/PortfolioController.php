@@ -51,18 +51,17 @@ class PortfolioController extends Controller
             'link' => $request->link,
         ]);
 
-        if ($request->has('skills')) {
+        if ($request->filled('skills')) {
             $portfolio->skills()->attach($request->skills);
         }
-
-        if ($request->has('user_skills')) {
+        if ($request->filled('user_skills')) {
             $portfolio->userSkills()->attach($request->user_skills);
         }
+        return redirect()
+            ->route('portfolio.index')
+            ->with('success', 'Portfolio berhasil ditambahkan!');
 
-        return redirect()->route('portfolio.index')->with('success', 'Portfolio added successfully!');
     }
-
-
     public function update(Request $request, Portfolio $portfolio)
     {
         // Pastikan hanya pemilik portfolio yang dapat mengubah data
