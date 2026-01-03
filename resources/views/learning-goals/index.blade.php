@@ -224,7 +224,6 @@
 </div>
 
 <script>
-// Fungsi untuk memantau perubahan status dropdown
 function handleStatusChange() {
     const status = document.getElementById('goalStatus').value;
     const container = document.getElementById('progressContainer');
