@@ -46,9 +46,9 @@
             <!-- Field Description -->
             <div class="mb-4">
                 <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description</label>
-                <textarea name="description" id="description" rows="5" 
+                <textarea name="description" id="description" rows="5" maxlength="500" 
                           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('description') border-red-500 @enderror" 
-                          required>{{ old('description', $portfolio->description) }}</textarea> {{-- Mengisi dengan data lama atau old() --}}
+                          required>{{ old('description', $portfolio->description) }}</textarea> 
                 @error('description')<p class="text-red-500 text-xs italic">{{ $message }}</p>@enderror
             </div>
 
@@ -56,7 +56,7 @@
             <div class="mb-4">
                 <label for="link" class="block text-gray-700 text-sm font-bold mb-2">Link (optional)</label>
                 <input type="url" name="link" id="link" 
-                       value="{{ old('link', $portfolio->link) }}" {{-- Mengisi dengan data lama atau old() --}}
+                       value="{{ old('link', $portfolio->link) }}"
                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('link') border-red-500 @enderror">
                 @error('link')<p class="text-red-500 text-xs italic">{{ $message }}</p>@enderror
             </div>
