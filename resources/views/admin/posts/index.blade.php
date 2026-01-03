@@ -106,9 +106,11 @@
                     <i class="fas fa-code mr-1 text-xs"></i>{{ $skill->name }}
                 </span>
                 @endforeach
-                @if($post->skills->count() > 3)
+
+                @php $skillCount = $post->skills->count(); @endphp
+                @if($skillCount > 3)
                 <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-600">
-                    +{{ $post->skills->count() - 3 }} more
+                    +{{ $skillCount - 3 }} more
                 </span>
                 @endif
             </div>
