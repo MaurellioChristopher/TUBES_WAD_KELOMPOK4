@@ -83,7 +83,7 @@
             </div>
 
             <div class="flex items-center justify-end mt-6">
-                <a href="{{ route('profile') }}" class="inline-block align-baseline font-bold text-sm text-gray-600 hover:text-gray-800 mr-4">
+                <a href="{{ route('dashboard') }}" class="inline-block align-baseline font-bold text-sm text-gray-600 hover:text-gray-800 mr-4">
                     Cancel
                 </a>
                 <button type="submit" class="bg-blue-600 hover:bg-blue-700 active:scale-95 transition transform duration-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
@@ -93,8 +93,7 @@
         </form>
     </div>
         <p class="text-xs text-yellow-600 mt-1">
-            Note: File must be reselected if validation fails
+            Catatan: Kalau validasi gagal, filenya harus dipilih ulang ya.
         </p>
-
 </div>
 @endsection
