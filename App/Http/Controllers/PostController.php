@@ -76,6 +76,7 @@ class PostController extends Controller
 
     public function destroy(Post $post): RedirectResponse
     {
+        //hanya pemilik post atau admin yang boleh menghapus
         if (Auth::id() !== $post->user_id && !(Auth::check() && Auth::user()->is_admin)) {
             return back()->with('error', 'Anda tidak memiliki izin untuk menghapus postingan ini.');
         }
