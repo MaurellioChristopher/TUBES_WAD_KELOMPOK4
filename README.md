@@ -124,7 +124,7 @@ Manajemen akun pengguna oleh administrator.
 
 ---
 
-## 📁 Struktur Folder Utama
+## Struktur Folder Utama
 
 ```
 skill-exchange/
@@ -149,49 +149,6 @@ skill-exchange/
 | Role  | Email                    | Password |
 | ----- | ------------------------ | -------- |
 | Admin | admin@skillexchange.test | password |
-
----
-
-## Troubleshooting
-
-### Reset Database (Database Lama Bermasalah)
-
-**Kapan Menggunakan:**
-
--   Database dari versi project sebelumnya masih ada dan menyebabkan konflik
--   Migration gagal karena struktur database lama berbeda
--   Ingin memulai dengan database bersih (fresh install)
--   Terjadi error saat menjalankan `php artisan migrate`
-
-**Solusi:**
-
-```bash
-# Reset database dan jalankan semua migration dari awal + seeder
-php artisan migrate:fresh --seed
-```
-
-**Apa yang Dilakukan Command Ini:**
-
-1. ✅ **Drop semua table** yang ada di database (hapus struktur lama)
-2. ✅ **Jalankan semua migration** dari awal (struktur bersih sesuai project terbaru)
-3. ✅ **Jalankan seeder** untuk mengisi data dummy dan akun admin default
-
-> ⚠️ **Peringatan:** Command ini akan **menghapus semua data** di database. Gunakan hanya untuk development, **JANGAN** di production!
-
-**Alternatif (Jika Mau Manual):**
-
-```bash
-# Opsi 1: Via MySQL Command Line
-mysql -u root -p
-DROP DATABASE db_skill_exchange;
-CREATE DATABASE db_skill_exchange;
-EXIT;
-
-php artisan migrate --seed
-
-# Opsi 2: Hanya reset migration (tanpa drop database)
-php artisan migrate:refresh --seed
-```
 
 ---
 
