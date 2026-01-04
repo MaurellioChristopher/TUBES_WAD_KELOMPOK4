@@ -32,7 +32,7 @@
 
         {{-- Form Content --}}
         <div class="px-8 py-8">
-            @if($errors->any())
+            @if($errors !== null && $errors->any())
             <div class="mb-6 bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
                 <div class="flex items-start">
                     <svg class="w-5 h-5 text-red-500 mt-0.5 mr-3" fill="currentColor" viewBox="0 0 20 20">
@@ -61,7 +61,7 @@
             </div>
             @endif
 
-            <form action="{{ route('admin.users.update', $user) }}" method="POST" class="space-y-6">
+            <form action="{{ route('admin.users.update', ['user' => $user]) }}" method="POST" class="space-y-6">
                 @csrf
                 @method('PUT')
 
@@ -184,7 +184,7 @@
                             </svg>
                         </div>
                     </div>
-                    @if(Auth::check() && Auth::user()->id === $user->id)
+                    @if((Auth::check()) && (Auth::user()->id === $user->id))
                         <input type="hidden" name="role" value="{{ $user->role }}">
                         <p class="mt-2 text-xs text-yellow-700 flex items-center gap-1.5 bg-yellow-50 p-2 rounded-lg">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
