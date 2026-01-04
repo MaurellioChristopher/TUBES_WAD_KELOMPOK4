@@ -36,4 +36,8 @@ class Skill extends Model
     return $query;
     }
 
+    public function scopeOrdered($query)
+    {
+    return $query->orderBy('name');
+    }
 }
