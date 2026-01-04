@@ -5,6 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Skill Model
+ * Handle skill entity and relationships
+ */
 class Skill extends Model
 {
     use HasFactory;
