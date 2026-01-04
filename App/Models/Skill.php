@@ -14,6 +14,11 @@ class Skill extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'category'];
+    
+    protected $casts = [
+    'name' => 'string',
+    'category' => 'string',
+];
 
     public function posts()
     {
