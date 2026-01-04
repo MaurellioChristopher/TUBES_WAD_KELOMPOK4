@@ -129,22 +129,22 @@ Manajemen akun pengguna oleh administrator.
 ```
 skill-exchange/
 ├── App/
-│   ├── Http/Controllers/     # Controller untuk logic aplikasi
-│   ├── Models/               # Model Eloquent (User, Post, Skill, dll)
+│   ├── Http/Controllers/     
+│   ├── Models/               
 │   └── ...
 ├── database/
-│   ├── migrations/           # File migrasi database
-│   └── seeders/              # Seeder untuk data awal
+│   ├── migrations/           
+│   └── seeders/              
 ├── resources/
-│   └── views/                # Blade templates
+│   └── views/                
 ├── routes/
-│   └── web.php               # Definisi routing
-└── public/                   # Assets publik
+│   └── web.php               
+└── public/                   
 ```
 
 ---
 
-## 🔐 Akun Default (Setelah Seeding)
+## Akun Default (Setelah Seeding)
 
 | Role  | Email                    | Password |
 | ----- | ------------------------ | -------- |
@@ -152,7 +152,7 @@ skill-exchange/
 
 ---
 
-## 🛠️ Troubleshooting
+## Troubleshooting
 
 ### Reset Database (Database Lama Bermasalah)
 
@@ -195,7 +195,7 @@ php artisan migrate:refresh --seed
 
 ---
 
-## 📄 REST API Endpoints
+## REST API Endpoints
 
 Aplikasi ini juga menyediakan REST API untuk akses data secara programmatic:
 
