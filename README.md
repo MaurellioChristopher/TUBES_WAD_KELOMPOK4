@@ -1,4 +1,4 @@
-# 🎯 Skill Exchange Platform
+# Skill Exchange Platform
 
 Platform berbagi dan pertukaran keahlian antar pengguna dengan fitur manajemen konten lengkap.
 
@@ -8,13 +8,13 @@ Platform berbagi dan pertukaran keahlian antar pengguna dengan fitur manajemen k
 
 ---
 
-## 📋 Deskripsi
+## Deskripsi
 
 **Skill Exchange** adalah aplikasi web yang memungkinkan pengguna untuk berbagi keahlian, mencari partner belajar, dan mengelola portofolio serta tujuan pembelajaran mereka. Aplikasi ini dilengkapi dengan panel admin untuk manajemen konten secara menyeluruh.
 
 ---
 
-## 🛠️ Teknologi yang Digunakan
+## Teknologi yang Digunakan
 
 | Kategori               | Teknologi              |
 | ---------------------- | ---------------------- |
@@ -28,9 +28,9 @@ Platform berbagi dan pertukaran keahlian antar pengguna dengan fitur manajemen k
 
 ---
 
-## ✨ 6 Fitur CRUD Utama
+## 6 Fitur CRUD Utama
 
-### 1. 📝 **Posts (Postingan)**
+### 1. **Posts (Postingan)**
 
 Pengguna dapat membuat postingan untuk menawarkan atau mencari keahlian tertentu.
 
@@ -43,7 +43,7 @@ Pengguna dapat membuat postingan untuk menawarkan atau mencari keahlian tertentu
 
 ---
 
-### 2. 💼 **Portfolios (Portofolio)**
+### 2. **Portfolios (Portofolio)**
 
 Showcase keahlian dan proyek yang pernah dikerjakan pengguna.
 
@@ -56,7 +56,7 @@ Showcase keahlian dan proyek yang pernah dikerjakan pengguna.
 
 ---
 
-### 3. 🎯 **Learning Goals (Tujuan Pembelajaran)**
+### 3. **Learning Goals (Tujuan Pembelajaran)**
 
 Pengguna dapat menetapkan dan melacak target pembelajaran.
 
@@ -69,7 +69,7 @@ Pengguna dapat menetapkan dan melacak target pembelajaran.
 
 ---
 
-### 4. 🏷️ **Skills (Keahlian)**
+### 4. **Skills (Keahlian)**
 
 Manajemen keahlian/skill yang tersedia di platform (Admin Only).
 
@@ -82,7 +82,7 @@ Manajemen keahlian/skill yang tersedia di platform (Admin Only).
 
 ---
 
-### 5. 📚 **Topics (Topik)**
+### 5. **Topics (Topik)**
 
 Kategori topik untuk mengelompokkan postingan (Admin Only).
 
@@ -95,7 +95,7 @@ Kategori topik untuk mengelompokkan postingan (Admin Only).
 
 ---
 
-### 6. 👥 **Users (Pengguna)**
+### 6. **Users (Pengguna)**
 
 Manajemen akun pengguna oleh administrator.
 
@@ -124,7 +124,7 @@ Manajemen akun pengguna oleh administrator.
 
 ---
 
-## 🚀 Cara Instalasi
+## Cara Instalasi
 
 ### Prerequisites
 
