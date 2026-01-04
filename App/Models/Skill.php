@@ -14,11 +14,6 @@ class Skill extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'category'];
-    
-    public function scopeCategory($query, $category)
-    {
-    return $query->where('category', $category);
-    }
 
     public function posts()
     {
