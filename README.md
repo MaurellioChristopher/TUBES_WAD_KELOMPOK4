@@ -86,12 +86,12 @@ Manajemen keahlian/skill yang tersedia di platform (Admin Only).
 
 Kategori topik untuk mengelompokkan postingan (Admin Only).
 
-| Operasi    | Deskripsi                   |
-| ---------- | --------------------------- |
-| **Create** | Admin membuat topik baru    |
-| **Read**   | Melihat daftar semua topik  |
-| **Update** | Admin mengedit detail topik |
-| **Delete** | Admin menghapus topik       |
+| Operasi    | Deskripsi                        |
+| ---------- | ---------------------------------|
+| **Create** | Admin menambahkan topik baru     |
+| **Read**   | Melihat daftar topik             |
+| **Update** | Admin bisa mengedit detail topik |
+| **Delete** | Admin bisa menghapus topik       |
 
 ---
 
