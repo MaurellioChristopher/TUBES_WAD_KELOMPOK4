@@ -32,6 +32,7 @@ class User extends Authenticatable
 
     public function posts()
     {
+        //relasi user ke posts
         return $this->hasMany(Post::class);
     }
 
@@ -42,6 +43,7 @@ class User extends Authenticatable
 
     public function getIsAdminAttribute()
     {
+         //check apakah user adalah admin
         return $this->attributes['role'] === 'admin';
     }
 
