@@ -30,4 +30,10 @@ class Skill extends Model
         return $this->belongsToMany(User::class, 'user_skill')
             ->withTimestamps();
     }
+
+    public function scopeActive($query)
+    {
+    return $query;
+    }
+
 }
