@@ -56,6 +56,7 @@
                            id="title" 
                            value="{{ old('title', $topic->title) }}"
                            required
+                           autofocus
                            placeholder="e.g., Web Development, Mobile Apps, AI & Machine Learning"
                            class="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-linkedin-blue focus:border-transparent transition-all duration-200 placeholder-gray-400">
                     <p class="mt-2 text-xs text-gray-500 flex items-center gap-1.5">
