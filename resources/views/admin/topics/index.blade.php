@@ -64,7 +64,10 @@
                     <span class="text-linkedin-blue font-bold text-sm">{{ $loop->iteration }}</span>
                 </div>
                 <div class="flex-1 min-w-0">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-2">{{ $topic->title }}</h3>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2 whitespace-normal">
+                     {{ $topic->title }}
+                 </h3>
+
                 </div>
             </div>
 
