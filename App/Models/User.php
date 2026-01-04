@@ -35,7 +35,7 @@ class User extends Authenticatable
         //relasi user ke posts
         return $this->hasMany(Post::class);
     }
-
+    //Relasi user ke portofolios
     public function portfolios()
     {
         return $this->hasMany(Portfolio::class);
@@ -44,9 +44,9 @@ class User extends Authenticatable
     public function getIsAdminAttribute()
     {
          //check apakah user adalah admin
-        return ($this->attributes['role'] === 'admin');
+        return $this->attributes['role'] === 'admin';
     }
-
+    // Relasi many-to-many antara user dan skill
     public function skills()
     {
         return $this->belongsToMany(Skill::class, 'user_skill')
