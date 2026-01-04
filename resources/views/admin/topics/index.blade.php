@@ -13,7 +13,7 @@
             <div>
                 <h1 class="text-3xl font-bold text-gray-900">Manage Topics</h1>
                 <p class="text-gray-600 text-sm mt-1">Manage available discussion topics</p>
-            </div>
+            </div> 
         </div>
         <a href="{{ route('admin.topics.create') }}" 
            class="bg-linkedin-blue hover:bg-linkedin-hover text-white font-semibold px-6 py-3 rounded-lg flex items-center gap-2 transition-all shadow-md">
@@ -69,9 +69,10 @@
             </div>
 
             {{-- Description --}}
-            <p class="text-gray-600 text-sm mb-4 line-clamp-3">
-                {{ $topic->description }}
+             <p class="text-gray-600 text-sm mb-4 line-clamp-3">
+            {{ $topic->description ?? '-' }}
             </p>
+
 
             {{-- Metadata --}}
             <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
