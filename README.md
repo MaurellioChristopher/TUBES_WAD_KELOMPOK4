@@ -1,4 +1,4 @@
-# 🎯 Skill Exchange Platform
+# Skill Exchange Platform
 
 Platform berbagi dan pertukaran keahlian antar pengguna dengan fitur manajemen konten lengkap.
 
@@ -8,13 +8,13 @@ Platform berbagi dan pertukaran keahlian antar pengguna dengan fitur manajemen k
 
 ---
 
-## 📋 Deskripsi
+## Deskripsi
 
 **Skill Exchange** adalah aplikasi web yang memungkinkan pengguna untuk berbagi keahlian, mencari partner belajar, dan mengelola portofolio serta tujuan pembelajaran mereka. Aplikasi ini dilengkapi dengan panel admin untuk manajemen konten secara menyeluruh.
 
 ---
 
-## 🛠️ Teknologi yang Digunakan
+## Teknologi yang Digunakan
 
 | Kategori               | Teknologi              |
 | ---------------------- | ---------------------- |
@@ -124,7 +124,35 @@ Manajemen akun pengguna oleh administrator.
 
 ---
 
-## 📄 REST API Endpoints
+## Struktur Folder Utama
+
+```
+skill-exchange/
+├── App/
+│   ├── Http/Controllers/     
+│   ├── Models/               
+│   └── ...
+├── database/
+│   ├── migrations/           
+│   └── seeders/              
+├── resources/
+│   └── views/                
+├── routes/
+│   └── web.php               
+└── public/                   
+```
+
+---
+
+## Akun Default (Setelah Seeding)
+
+| Role  | Email                    | Password |
+| ----- | ------------------------ | -------- |
+| Admin | admin@skillexchange.test | password |
+
+---
+
+## REST API Endpoints
 
 Aplikasi ini juga menyediakan REST API untuk akses data secara programmatic:
 

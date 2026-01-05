@@ -22,9 +22,9 @@ class SkillController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255|unique:skills,name',
-            'category' => 'required|string|max:255',
-            'custom_category' => 'nullable|string|max:255',
+            'name' => 'required|string|max:300|unique:skills,name',
+            'category' => 'required|string|max:300',
+            'custom_category' => 'nullable|string|max:300',
         ]);
 
         $category = $request->custom_category ?: $request->category;
@@ -47,9 +47,9 @@ class SkillController extends Controller
     public function update(Request $request, Skill $skill)
     {
         $request->validate([
-            'name' => 'required|string|max:255|unique:skills,name,' . $skill->id,
-            'category' => 'required|string|max:255',
-            'custom_category' => 'nullable|string|max:255',
+            'name' => 'required|string|max:300|unique:skills,name,' . $skill->id,
+            'category' => 'required|string|max:300',
+            'custom_category' => 'nullable|string|max:300',
         ]);
 
         $category = $request->custom_category ?: $request->category;

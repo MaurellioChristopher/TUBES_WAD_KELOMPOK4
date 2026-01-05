@@ -5,6 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Skill Model
+ * Handle skill entity and relationships
+ */
 class Skill extends Model
 {
     use HasFactory;
@@ -25,5 +29,15 @@ class Skill extends Model
     {
         return $this->belongsToMany(User::class, 'user_skill')
             ->withTimestamps();
+    }
+
+    public function scopeActive($query)
+    {
+    return $query;
+    }
+
+    public function scopeOrdered($query)
+    {
+    return $query->orderBy('name');
     }
 }
