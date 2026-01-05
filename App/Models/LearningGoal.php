@@ -18,6 +18,7 @@ class LearningGoal extends Model
         'target_date',
         'status',
         'notes',
+        'progress',
     ];
 
     protected $casts = [

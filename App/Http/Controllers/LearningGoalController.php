@@ -28,7 +28,14 @@ class LearningGoalController extends Controller
             'topic_id' => 'nullable|exists:topics,id',
             'target_date' => 'nullable|date',
             'status' => 'required|in:not_started,in_progress,completed',
+            'progress' => 'nullable|integer|min:0|max:100',
         ]);
+
+        if ($request->status === 'completed') {
+        $validated['progress'] = 100;
+        } elseif ($request->status === 'not_started') {
+        $validated['progress'] = 0;
+        }
 
         Auth::user()->learningGoals()->create($request->all());
 

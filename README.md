@@ -28,9 +28,9 @@ Platform berbagi dan pertukaran keahlian antar pengguna dengan fitur manajemen k
 
 ---
 
-## ✨ 6 Fitur CRUD Utama
+## 6 Fitur CRUD Utama
 
-### 1. 📝 **Posts (Postingan)**
+### 1. **Posts (Postingan)**
 
 Pengguna dapat membuat postingan untuk menawarkan atau mencari keahlian tertentu.
 
@@ -43,7 +43,7 @@ Pengguna dapat membuat postingan untuk menawarkan atau mencari keahlian tertentu
 
 ---
 
-### 2. 💼 **Portfolios (Portofolio)**
+### 2. **Portfolios (Portofolio)**
 
 Showcase keahlian dan proyek yang pernah dikerjakan pengguna.
 
@@ -56,7 +56,7 @@ Showcase keahlian dan proyek yang pernah dikerjakan pengguna.
 
 ---
 
-### 3. 🎯 **Learning Goals (Tujuan Pembelajaran)**
+### 3. **Learning Goals (Tujuan Pembelajaran)**
 
 Pengguna dapat menetapkan dan melacak target pembelajaran.
 
@@ -69,7 +69,7 @@ Pengguna dapat menetapkan dan melacak target pembelajaran.
 
 ---
 
-### 4. 🏷️ **Skills (Keahlian)**
+### 4. **Skills (Keahlian)**
 
 Manajemen keahlian/skill yang tersedia di platform (Admin Only).
 
@@ -82,7 +82,7 @@ Manajemen keahlian/skill yang tersedia di platform (Admin Only).
 
 ---
 
-### 5. 📚 **Topics (Topik)**
+### 5. **Topics (Topik)**
 
 Kategori topik untuk mengelompokkan postingan (Admin Only).
 
@@ -95,7 +95,7 @@ Kategori topik untuk mengelompokkan postingan (Admin Only).
 
 ---
 
-### 6. 👥 **Users (Pengguna)**
+### 6. **Users (Pengguna)**
 
 Manajemen akun pengguna oleh administrator.
 
@@ -121,173 +121,6 @@ Manajemen akun pengguna oleh administrator.
 1. **Login** - Masuk dengan akun admin
 2. **Admin Dashboard** - Lihat statistik platform
 3. **Manage Data** - Kelola users, posts, portfolios, skills, dan topics
-
----
-
-## 🚀 Cara Instalasi
-
-### Prerequisites
-
--   **PHP >= 8.2.12** (Tested and compatible with PHP 8.2.12+)
--   Composer (latest version)
--   MySQL atau SQLite
--   Git
-
-### Langkah Instalasi
-
-#### 1. Clone Repository
-
-```bash
-git clone https://github.com/xplayerz1/skill-exchange.git
-cd skill-exchange
-```
-
-#### 2. Install Dependencies
-
-```bash
-composer install
-```
-
-#### 3. Setup Environment
-
-```bash
-# Copy file environment
-# Windows PowerShell:
-Copy-Item .env.example .env
-
-# Linux/Mac:
-# cp .env.example .env
-
-# Generate application key
-php artisan key:generate
-```
-
-#### 4. Setup Database
-
-**Opsi 1: MySQL (Recommended)**
-
-```bash
-# 1. Buat database MySQL
-mysql -u root -p
-CREATE DATABASE db_skill_exchange;
-EXIT;
-
-# 2. Konfigurasi sudah ada di .env (pastikan sesuai dengan setup MySQL Anda)
-# DB_CONNECTION=mysql
-# DB_HOST=127.0.0.1
-# DB_PORT=3306
-# DB_DATABASE=db_skill_exchange
-# DB_USERNAME=root
-# DB_PASSWORD=
-```
-
-**Opsi 2: SQLite (Alternative)**
-
-```bash
-# Ubah DB_CONNECTION di .env menjadi sqlite
-# DB_CONNECTION=sqlite
-
-# Buat file database SQLite
-touch database/database.sqlite
-# Untuk Windows PowerShell gunakan:
-# New-Item database/database.sqlite -ItemType File
-```
-
-#### 5. Jalankan Migrasi & Seeder
-
-```bash
-# Jalankan migrasi database
-php artisan migrate
-
-# (Opsional) Jalankan seeder untuk data dummy
-php artisan db:seed
-```
-
-#### 6. Jalankan Aplikasi
-
-```bash
-php artisan serve
-```
-
-**Aplikasi berjalan di:** http://localhost:8000
-
-**Login dengan akun default** (jika sudah run seeder):
-
--   Email: `admin@example.com`
--   Password: `password`
-
-Atau daftar akun baru di: http://localhost:8000/register
-
----
-
-## 📁 Struktur Folder Utama
-
-```
-skill-exchange/
-├── App/
-│   ├── Http/Controllers/     # Controller untuk logic aplikasi
-│   ├── Models/               # Model Eloquent (User, Post, Skill, dll)
-│   └── ...
-├── database/
-│   ├── migrations/           # File migrasi database
-│   └── seeders/              # Seeder untuk data awal
-├── resources/
-│   └── views/                # Blade templates
-├── routes/
-│   └── web.php               # Definisi routing
-└── public/                   # Assets publik
-```
-
----
-
-## 🔐 Akun Default (Setelah Seeding)
-
-| Role  | Email                    | Password |
-| ----- | ------------------------ | -------- |
-| Admin | admin@skillexchange.test | password |
-
----
-
-## 🛠️ Troubleshooting
-
-### Reset Database (Database Lama Bermasalah)
-
-**Kapan Menggunakan:**
-
--   Database dari versi project sebelumnya masih ada dan menyebabkan konflik
--   Migration gagal karena struktur database lama berbeda
--   Ingin memulai dengan database bersih (fresh install)
--   Terjadi error saat menjalankan `php artisan migrate`
-
-**Solusi:**
-
-```bash
-# Reset database dan jalankan semua migration dari awal + seeder
-php artisan migrate:fresh --seed
-```
-
-**Apa yang Dilakukan Command Ini:**
-
-1. ✅ **Drop semua table** yang ada di database (hapus struktur lama)
-2. ✅ **Jalankan semua migration** dari awal (struktur bersih sesuai project terbaru)
-3. ✅ **Jalankan seeder** untuk mengisi data dummy dan akun admin default
-
-> ⚠️ **Peringatan:** Command ini akan **menghapus semua data** di database. Gunakan hanya untuk development, **JANGAN** di production!
-
-**Alternatif (Jika Mau Manual):**
-
-```bash
-# Opsi 1: Via MySQL Command Line
-mysql -u root -p
-DROP DATABASE db_skill_exchange;
-CREATE DATABASE db_skill_exchange;
-EXIT;
-
-php artisan migrate --seed
-
-# Opsi 2: Hanya reset migration (tanpa drop database)
-php artisan migrate:refresh --seed
-```
 
 ---
 
