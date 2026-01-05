@@ -63,9 +63,8 @@
     </div>
 
     <!-- Posts Cards nya -->
-    @if($posts->count() > 0)
-    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        @foreach($posts as $post)
+<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    @forelse($posts as $post)
         <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
             <!-- Header nya -->
             <div class="flex justify-between items-start mb-4">
@@ -73,7 +72,7 @@
                     <h3 class="text-lg font-semibold text-gray-900 mb-2">{{ $post->title }}</h3>
                     <p class="text-sm text-gray-600">
                         <i class="fas fa-user mr-1"></i>
-                        {{ $post->user->name ?? 'Unknown' }}
+                        {{ optional($post->user)->name ?? 'Unknown' }}
                     </p>
                     @if($post->user)
                         <p class="text-xs text-gray-500">
@@ -91,27 +90,29 @@
             
             <!-- Page Topic nya -->
             @if($post->topic)
-            <div class="mb-4">
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
-                    <i class="fas fa-folder mr-1"></i>{{ $post->topic->title }}
-                </span>
-            </div>
+                <div class="mb-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+                        <i class="fas fa-folder mr-1"></i>{{ $post->topic->title }}
+                    </span>
+                </div>
             @endif
             
             <!-- Skills nya -->
             @if($post->skills && $post->skills->count() > 0)
-            <div class="flex flex-wrap gap-2 mb-4">
-                @foreach($post->skills->take(3) as $skill)
-                <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800">
-                    <i class="fas fa-code mr-1 text-xs"></i>{{ $skill->name }}
-                </span>
-                @endforeach
-                @if($post->skills->count() > 3)
-                <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-600">
-                    +{{ $post->skills->count() - 3 }} more
-                </span>
-                @endif
-            </div>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    @foreach($post->skills->take(3) as $skill)
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800">
+                            <i class="fas fa-code mr-1 text-xs"></i>{{ $skill->name }}
+                        </span>
+                    @endforeach
+
+                    @php $skillCount = $post->skills->count(); @endphp
+                    @if($skillCount > 3)
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-600">
+                            +{{ $skillCount - 3 }} more
+                        </span>
+                    @endif
+                </div>
             @endif
 
             <!-- Footer nya ini -->
@@ -121,74 +122,25 @@
                     {{ $post->created_at->diffForHumans() }}
                 </div>
                 
-                <!-- Delete Button nya disini -->
-                <button onclick="confirmDelete({{ $post->id }})" class="inline-flex items-center px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-md transition">
+                <button onclick="confirmDelete({{ $post->id }})"
+                        class="inline-flex items-center px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-md transition">
                     <i class="fas fa-trash mr-1"></i>
                     Delete
                 </button>
             </div>
         </div>
-        @endforeach
-    </div>
+    @empty
+        <div class="col-span-full text-center py-12 bg-white rounded-lg shadow-md">
+            <i class="fas fa-inbox text-6xl text-gray-300 mb-4"></i>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">No posts</h3>
+            <p class="text-gray-600">No posts created by users yet</p>
+        </div>
+    @endforelse
+</div>
 
+{{-- Pagination hanya ditampilkan jika jumlah data melebihi satu halaman --}}
+@if($posts->hasPages())
     <div class="mt-8">
         {{ $posts->links() }}
     </div>
-
-    @else
-
-    <div class="text-center py-12 bg-white rounded-lg shadow-md">
-        <i class="fas fa-inbox text-6xl text-gray-300 mb-4"></i>
-        <h3 class="text-xl font-semibold text-gray-900 mb-2">No posts</h3>
-        <p class="text-gray-600">No posts created by users yet</p>
-    </div>
-    @endif
-</div>
-
-
-<div id="deleteModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
-    <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
-        <div class="mt-3 text-center">
-            <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100 mb-4">
-                <i class="fas fa-exclamation-triangle text-red-600 text-2xl"></i>
-            </div>
-            <h3 class="text-lg font-medium text-gray-900 mb-2">Confirm Delete</h3>
-            <p class="text-sm text-gray-500 mb-6">
-                Are you sure you want to delete this post? This action cannot be undone!
-            </p>
-            <form id="deleteForm" method="POST">
-                @csrf
-                @method('DELETE')
-                <div class="flex justify-center space-x-3">
-                    <button type="button" onclick="closeDeleteModal()" 
-                            class="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-md transition">
-                        Cancel
-                    </button>
-                    <button type="submit" 
-                            class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md transition">
-                        Yes, Delete
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<script>
-function confirmDelete(postId) {
-    document.getElementById('deleteModal').classList.remove('hidden');
-    document.getElementById('deleteForm').action = '{{ url('/admin/posts') }}/' + postId;
-}
-
-function closeDeleteModal() {
-    document.getElementById('deleteModal').classList.add('hidden');
-}
-
-
-document.getElementById('deleteModal').addEventListener('click', function(e) {
-    if (e.target === this) {
-        closeDeleteModal();
-    }
-});
-</script>
-@endsection
+@endif

@@ -5,8 +5,10 @@
 @section('content')
 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div class="bg-white rounded-lg shadow p-6">
+        {{-- Judul halaman --}}
         <h2 class="text-2xl font-bold text-gray-900 mb-6">Add New Portfolio Item</h2>
 
+        {{-- Tampilkan error validasi kalau ada --}}
         @if ($errors->any())
             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
                 <strong class="font-bold">Oops!</strong>
@@ -19,12 +21,14 @@
             </div>
         @endif
 
+        {{-- Pesan sukses dari session --}}
         @if (session('success'))
             <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4">
                 <span class="block sm:inline">{{ session('success') }}</span>
             </div>
         @endif
-
+        
+        {{-- Form tambah portfolio --}}
         <form action="{{ route('portfolio.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
@@ -37,14 +41,17 @@
                 @error('title')<p class="text-red-500 text-xs italic">{{ $message }}</p>@enderror
             </div>
 
+            {{-- Input judul portfolio --}}
             <div class="mb-4">
                 <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description</label>
-                <textarea name="description" id="description" rows="5" 
+                <textarea name="description" id="description" rows="5" maxlength="500"
                           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('description') border-red-500 @enderror" 
                           required>{{ old('description') }}</textarea>
+                          <p class="text-xs text-gray-500 mt-1">Maximum 500 characters</p>
                 @error('description')<p class="text-red-500 text-xs italic">{{ $message }}</p>@enderror
             </div>
 
+            {{-- Input deskripsi portfolio --}}
             <div class="mb-4">
                 <label for="link" class="block text-gray-700 text-sm font-bold mb-2">Link (optional)</label>
                 <input type="url" name="link" id="link" 
@@ -53,7 +60,7 @@
                 @error('link')<p class="text-red-500 text-xs italic">{{ $message }}</p>@enderror
             </div>
 
-
+            {{-- Checkbox skill yang dipilih --}}
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2">Skills</label>
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -69,25 +76,30 @@
                     @endforelse
                 </div>
                 @error('skills')<p class="text-red-500 text-xs italic">{{ $message }}</p>@enderror
-            </div>
+            </div>\
 
+            {{-- Upload file pendukung portfolio --}}
             <div class="mb-4">
                 <label for="file" class="block text-gray-700 text-sm font-bold mb-2">File (optional)</label>
                 <input type="file" name="file" id="file" 
                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('file') border-red-500 @enderror">
                 <p class="text-xs text-gray-500 mt-1">Accepts PDF, DOC, DOCX, JPG, JPEG, PNG (Max 2MB)</p>
+                <p class="text-xs text-yellow-600 mt-1"> Catatan: Kalau validasi gagal, filenya harus dipilih ulang ya. </p>
                 @error('file')<p class="text-red-500 text-xs italic">{{ $message }}</p>@enderror
             </div>
 
             <div class="flex items-center justify-end mt-6">
-                <a href="{{ route('profile') }}" class="inline-block align-baseline font-bold text-sm text-gray-600 hover:text-gray-800 mr-4">
+                <a href="{{ route('dashboard') }}" class="inline-block align-baseline font-bold text-sm text-gray-600 hover:text-gray-800 mr-4">
                     Cancel
                 </a>
-                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300">
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 active:scale-95 transition transform duration-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                     Save Portfolio
                 </button>
             </div>
         </form>
     </div>
+        <p class="text-xs text-yellow-600 mt-1">
+            Catatan: Kalau validasi gagal, filenya harus dipilih ulang ya.
+        </p>
 </div>
 @endsection

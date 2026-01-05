@@ -6,10 +6,12 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Http\RedirectResponse;
+
 
 class PostController extends Controller
 {
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'type' => 'required|in:open,need',
@@ -39,7 +41,7 @@ class PostController extends Controller
             ->with('success', 'Post created successfully!');
     }
 
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Post $post): RedirectResponse
     {
         if ($post->user_id !== Auth::id()) {
             abort(403);
@@ -72,14 +74,21 @@ class PostController extends Controller
             ->with('success', 'Post updated successfully!');
     }
 
-    public function destroy(Post $post)
+    public function destroy(Post $post): RedirectResponse
     {
+        //hanya pemilik post atau admin yang boleh menghapus
         if (Auth::id() !== $post->user_id && !(Auth::check() && Auth::user()->is_admin)) {
             return back()->with('error', 'Anda tidak memiliki izin untuk menghapus postingan ini.');
         }
 
         try {
             $post->delete();
+            Log::info('Post deleted', [
+                'post_id' => $post->id,
+                'deleted_by' => Auth::id(),
+                'is_admin' => Auth::check() && Auth::user()->is_admin,
+            ]);
+
 
             if (Auth::check() && Auth::user()->is_admin) {
                 return redirect()
