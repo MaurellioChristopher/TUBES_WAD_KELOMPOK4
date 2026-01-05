@@ -9,6 +9,7 @@ class Portfolio extends Model
 {
     use HasFactory;
 
+    protected $table = 'portfolios';
     protected $fillable = [
         'user_id',
         'title',
@@ -29,7 +30,8 @@ class Portfolio extends Model
 
     public function skills()
     {
-        return $this->belongsToMany(Skill::class);
+    return $this->belongsToMany(Skill::class)
+                ->withTimestamps();
     }
 
     public function userSkills()

@@ -13,13 +13,16 @@ class PortfolioController extends Controller
 
     public function index()
     {
+        // Ambil data user yang sedang login
         $targetUser = Auth::user();
-        $targetUser->load('userSkills'); // Load personal skills for dropdown
-        
+        // Load skill personal milik user untuk kebutuhan dropdown
+        $targetUser->load('userSkills'); 
+        // Ambil seluruh portfolio milik user beserta relasi skill
         $portfolios = Portfolio::where('user_id', $targetUser->id)
                                ->with(['skills', 'userSkills'])
                                ->latest()
                                ->get();
+        // Ambil daftar skill global
         $skills = Skill::orderBy('name')->get();
         
         return view('profile', compact('targetUser', 'portfolios', 'skills'));
@@ -48,20 +51,20 @@ class PortfolioController extends Controller
             'link' => $request->link,
         ]);
 
-        if ($request->has('skills')) {
+        if ($request->filled('skills')) {
             $portfolio->skills()->attach($request->skills);
         }
-
-        if ($request->has('user_skills')) {
+        if ($request->filled('user_skills')) {
             $portfolio->userSkills()->attach($request->user_skills);
         }
+        return redirect()
+            ->route('portfolio.index')
+            ->with('success', 'Portfolio berhasil ditambahkan!');
 
-        return redirect()->route('portfolio.index')->with('success', 'Portfolio added successfully!');
     }
-
-
     public function update(Request $request, Portfolio $portfolio)
     {
+        // Pastikan hanya pemilik portfolio yang dapat mengubah data
         if ($portfolio->user_id !== Auth::id()) {
             abort(403, 'Unauthorized action.'); 
         }
@@ -105,6 +108,7 @@ class PortfolioController extends Controller
 
     public function destroy(Portfolio $portfolio)
     {
+        
         if ($portfolio->user_id !== Auth::id()) {
             abort(403, 'Unauthorized action.');
         }
