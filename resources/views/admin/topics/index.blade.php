@@ -13,7 +13,7 @@
             <div>
                 <h1 class="text-3xl font-bold text-gray-900">Manage Topics</h1>
                 <p class="text-gray-600 text-sm mt-1">Manage available discussion topics</p>
-            </div>
+            </div> 
         </div>
         <a href="{{ route('admin.topics.create') }}" 
            class="bg-linkedin-blue hover:bg-linkedin-hover text-white font-semibold px-6 py-3 rounded-lg flex items-center gap-2 transition-all shadow-md">
@@ -64,14 +64,18 @@
                     <span class="text-linkedin-blue font-bold text-sm">{{ $loop->iteration }}</span>
                 </div>
                 <div class="flex-1 min-w-0">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-2">{{ $topic->title }}</h3>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2 whitespace-normal">
+                     {{ $topic->title }}
+                 </h3>
+
                 </div>
             </div>
 
             {{-- Description --}}
-            <p class="text-gray-600 text-sm mb-4 line-clamp-3">
-                {{ $topic->description }}
+             <p class="text-gray-600 text-sm mb-4 line-clamp-3">
+            {{ $topic->description ?? '-' }}
             </p>
+
 
             {{-- Metadata --}}
             <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">

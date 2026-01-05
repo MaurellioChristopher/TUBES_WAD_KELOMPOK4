@@ -6,7 +6,7 @@
 <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     {{-- Back Link --}}
     <div class="mb-6">
-        <a href="{{ route('admin.topics.index') }}" class="inline-flex items-center gap-2 text-linkedin-blue hover:text-linkedin-hover font-medium transition-colors">
+        <a href="{{ route('admin.topics.index') }}" aria-label="Back to topics list"     class="inline-flex items-center gap-2 text-linkedin-blue hover:text-linkedin-hover font-medium transition-colors">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
             </svg>
@@ -31,7 +31,7 @@
                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
                     </svg>
                     <div class="flex-1">
-                        <h3 class="text-red-800 font-semibold text-sm">Please fix the following errors:</h3>
+                        <h3 class="text-red-800 font-semibold text-sm">Please review and correct the following errors:</h3>
                         <ul class="list-disc list-inside text-red-700 text-sm mt-2 space-y-1">
                             @foreach($errors->all() as $error)
                                 <li>{{ $error }}</li>
@@ -56,6 +56,8 @@
                            id="title" 
                            value="{{ old('title', $topic->title) }}"
                            required
+                           autofocus
+                           maxlength="255"
                            placeholder="e.g., Web Development, Mobile Apps, AI & Machine Learning"
                            class="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-linkedin-blue focus:border-transparent transition-all duration-200 placeholder-gray-400">
                     <p class="mt-2 text-xs text-gray-500 flex items-center gap-1.5">
@@ -75,7 +77,7 @@
                               id="description" 
                               rows="5"
                               placeholder="Provide a brief description of this topic..."
-                              class="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-linkedin-blue focus:border-transparent transition-all duration-200 placeholder-gray-400">{{ old('description', $topic->description) }}</textarea>
+                              class="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-linkedin-blue focus:border-transparent transition-all duration-200 placeholder-gray-400">{{ old('description', $topic->description ?? '') }}</textarea>
                     <p class="mt-2 text-xs text-gray-500 flex items-center gap-1.5">
                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
