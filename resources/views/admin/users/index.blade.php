@@ -16,8 +16,9 @@
             </div>
         </div>
         @if (Route::has('admin.users.create'))
-        <a href="{{ route('admin.users.create') }}" 
-           class="bg-linkedin-blue hover:bg-linkedin-hover text-white font-semibold px-6 py-3 rounded-lg flex items-center gap-2 transition-all shadow-md">
+        <a 
+            href="{{ route('admin.users.create') }}" 
+            class="bg-linkedin-blue hover:bg-linkedin-hover text-white font-semibold px-6 py-3 rounded-lg flex items-center gap-2 transition-all shadow-md">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.5v15m7.5-7.5h-15"/>
             </svg>
@@ -70,7 +71,7 @@
                 <div class="flex-1 min-w-0">
                     <h3 class="text-lg font-semibold text-gray-900 truncate">{{ $user->name }}</h3>
                     <p class="text-sm text-gray-500 truncate">{{ $user->email }}</p>
-                    @if($user->role === 'admin' || $user->is_admin)
+                    @if(($user->role === 'admin') || ($user->is_admin))
                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800 mt-1">
                         <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
